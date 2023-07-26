@@ -1,0 +1,12 @@
+<h1> New Post <h1>
+
+<%= form_tag('/userblog/create', :method => "post") do %>
+ 
+  Title: <%= text_field_tag(:title)%>
+  Content: <%= text_area_tag(:content)%>
+  Likes: <%= number_field_tag(:likes)%>
+  Dislikes: <%= number_field_tag(:dislikes)%>
+
+  <%= submit_tag("create new post")%>
+
+<%end %>

@@ -1,0 +1,15 @@
+<h1> User Blog Post</h1>
+
+<% @userblogs.each do |userblog| %>
+   
+  <h2> <%= userblog.title %> </h2>
+  <p> <%= userblog.content %> </p>
+  <p>Likes: <%= userblog.likes %> </p>
+  <p>Dislikes: <%= userblog.dislikes %> </p>
+  
+  <%= link_to "view", "/userblog/view/#{userblog.id}"%>
+
+<%end%>
+<hr>
+<%= link_to "new blog post", "/userblog/new"%>
+
