@@ -1,0 +1,9 @@
+<h1><%= @blog_post.title %></h1>
+<p><%= @blog_post.content %></p>
+<p>Likes: <%= @blog_post.likes %></p>
+<p>Dislikes: <%= @blog_post.dislikes %></p>
+
+<%= button_to "Like", like_blog_post_path(@blog_post), method: :post %>
+<%= button_to "Dislike", dislike_blog_post_path(@blog_post), method: :post %>
+
+<%= link_to "Back to All Blog Posts", blog_posts_path %>
