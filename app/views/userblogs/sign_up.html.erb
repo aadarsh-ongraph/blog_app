@@ -1,0 +1,8 @@
+<h1> This is signUp page </h1>
+
+<%= form_tag('/userblog/sign_up', :method => "post") do %>
+
+  Email: <%= email_field_tag(:email)%>
+  Password: <%= password_field_tag(:password)%>
+  <%= submit_tag("Create User")%>
+<%end%>
