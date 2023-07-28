@@ -19,8 +19,15 @@ Rails.application.routes.draw do
   # userblog app welcome is root
   root 'userblogs#welcome'
 
+  #this is check
+  #get 'userblogs', to: 'userblogs#index'
   get 'userblogs/:id', to: 'userblogs#index'
-  get 'userblog/new', to: 'userblogs#new'
+
+
+  # this userblog/new is withour id
+  #get 'userblog/new', to: 'userblogs#new'
+  get 'userblog/new/:id', to: 'userblogs#new'
+  
   post 'userblog/create', to: 'userblogs#create'
   get 'userblog/view/:id', to: 'userblogs#view'
 

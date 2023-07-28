@@ -1,9 +1,9 @@
 <h1> <%= @userblog.title %> </h1>
 
 <p> <%= @userblog.content %> </p>
-<p>Likes: <%= @userblog.likes %> </p>
+<p>Likes: <%= @userblog.likescount %> </p>
 <p>Dislike: <%= @userblog.dislikes %> </p>
-
+<p>This is userid = <%= @userblog.user_id %> </p>
  # below two lines not write because this line show in screen 
  #button_to "Likes", like_userblog_path(@userblog), method: :post 
  #button_to "Dislikes", dislike_userblog_path(@userblog), methoed: :post 
@@ -11,4 +11,4 @@
 <%= button_to "Likes", "/userblog/like/#{@userblog.id}"%>
 <%= button_to "Dislikes", "/userblog/dislike/#{@userblog.id}"%>
 
-<%= link_to "Go to User Blogs", '/userblogs'%>
+<%= link_to "Go to User Blogs", "/userblogs/#{@user.id}" %>

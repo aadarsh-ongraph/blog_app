@@ -4,9 +4,11 @@
  
   Title: <%= text_field_tag(:title)%>
   Content: <%= text_area_tag(:content)%>
-  Likes: <%= number_field_tag(:likes)%>
-  Dislikes: <%= number_field_tag(:dislikes)%>
+ 
   
+  <%= hidden_field_tag(:likes, 0)%>
+  <%= hidden_field_tag(:dislikes, 0)%>
+  <%= hidden_field_tag(:user_id, @user.id) %>
 
   <%= submit_tag("create new post")%>
 
