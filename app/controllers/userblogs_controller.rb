@@ -56,41 +56,77 @@ class UserblogsController < ApplicationController
 
 
     # # this method like handle with Like model means likes table
+    # def like 
+
+    #     @user = User.find(@@id)
+    #     @userblog = Userblog.find(params[:id])
+    #     #@checklike = Like.find_by_user_id(@user.id)
+    #     #@checklike = Like.where(user_id: @user.id, userblog_id: params[:id])
+    #     #@like_by_userid = Like.group(:)
+
+    #     # this is find single row in likes table where user_id and userblog_id in same row
+    #     #@checklike = Like.find_by_user_id_and_userblog_id(@user.id, @userblog.id)
+    #     @checklike_by_user_id_and_userblog_id = Like.where(user_id: @user.id, userblog_id: @userblog.id)
+       
+    #     if @checklike.class == NilClass
+
+    #         Like.create(user_id:@user.id, userblog_id:@userblog.id, like:1)
+    #         @userblog.increment!(:likescount)
+
+    #         redirect_to "/userblog/view#{@userblog.id}"
+        
+    #     elsif @checklike.userblog_id != @userblog.id 
+            
+    #         Like.create(user_id:@user.id, userblog_id:@userblog.id, like: 1)
+    #         @userblog.increment!(:likescount)
+
+    #         redirect_to "/userblog/view#{@userblog.id}"
+
+    #     elsif @checklike.like == 1 #true 
+
+    #         @checklike.update(user_id:@user.id, userblog_id:@userblog.id, like:0)
+    #         @userblog.decrement!(:likescount)
+
+    #         redirect_to "/userblog/view#{@userblog.id}"
+    #     else  
+
+    #         @checklike.update(user_id: @user.id, userblog_id:@userblog.id, like:1)
+    #         @userblog.increment!(:likescount)
+
+    #         redirect_to "/userblog/view#{@userblog.id}"
+    #     end
+    # end
+
+    # # this method like handle with Like model means likes table
     def like 
 
         @user = User.find(@@id)
         @userblog = Userblog.find(params[:id])
-        #@checklike = Like.find_by_user_id(@user.id)
-        @checklike = Like.where(user_id: @user.id, userblog_id: params[:id])
-    
-        if @checklike.class == NilClass
+        
+        @checklike = Like.where(user_id: @user.id, userblog_id: @userblog.id)
+        # debugger
+        if @checklike.find_by_user_id(@user.id) == nil
 
-            Like.create(user_id:@user.id, userblog_id:@userblog.id, like:1)
+            Like.create(user_id:@user.id, userblog_id:@userblog.id, like:true)
             @userblog.increment!(:likescount)
 
             redirect_to "/userblog/view#{@userblog.id}"
         
-        elsif @checklike.userblog_id != @userblog.id 
-            
-            Like.create(user_id:@user.id, userblog_id:@userblog.id, like: 1)
-            @userblog.increment!(:likescount)
+        elsif @checklike.find_by_user_id(@user.id).like == true 
 
-            redirect_to "/userblog/view#{@userblog.id}"
-
-        elsif @checklike.like == 1 #true 
-
-            @checklike.update(user_id:@user.id, userblog_id:@userblog.id, like:0)
+            @checklike.find_by_user_id(@user.id).update(user_id:@user.id, userblog_id:@userblog.id, like:false)
             @userblog.decrement!(:likescount)
 
             redirect_to "/userblog/view#{@userblog.id}"
         else  
-
-            @checklike.update(user_id: @user.id, userblog_id:@userblog.id, like:1)
+            @checklike.find_by_user_id(@user.id).update(user_id: @user.id, userblog_id:@userblog.id, like:true)
             @userblog.increment!(:likescount)
 
             redirect_to "/userblog/view#{@userblog.id}"
         end
     end
+
+
 
     # this method dislike handle
     def dislike
